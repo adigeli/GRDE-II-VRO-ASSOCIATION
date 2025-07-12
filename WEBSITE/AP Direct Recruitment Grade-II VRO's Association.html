@@ -1,0 +1,236 @@
+<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AP Direct Recruitment Grade-II VRO's Association</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+        }
+        .hero-bg {
+            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://source.unsplash.com/random/1600x900/?community');
+            background-size: cover;
+            background-position: center;
+        }
+        .card {
+            transition: transform 0.3s ease-in-out;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <!-- Header Section -->
+    <header class="bg-blue-900 text-white py-6">
+        <div class="container mx-auto text-center">
+            <h1 class="text-3xl md:text-4xl font-bold">AP Direct Recruitment Grade-II VRO's Association</h1>
+            <p class="text-lg mt-2">Regd No. 113/2025 | Ananthapuramu District</p>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-bg py-20 text-white text-center">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl md:text-5xl font-bold mb-4">Welcome to Our Association</h2>
+            <p class="text-lg md:text-xl max-w-2xl mx-auto">Dedicated to the welfare and professional growth of Village Revenue Officers (Grade-II) in Ananthapuramu District.</p>
+            <a href="#contact" class="mt-6 inline-block bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700">Contact Us</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-blue-900 mb-8">About Our Association</h2>
+            <p class="text-lg text-gray-700 max-w-3xl mx-auto text-center">
+                The AP Direct Recruitment Grade-II VRO's Association, Ananthapuramu District, is a registered organization (Regd No. 113/2025) committed to supporting Village Revenue Officers. Our mission is to foster unity, address professional challenges, and promote the welfare of our members.
+            </p>
+        </div>
+    </section>
+
+    <!-- Leadership Team Section -->
+    <section class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-blue-900 mb-12">Our Association Team</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- President -->
+                <div class="card bg-white p-6 rounded-lg shadow-lg text-center">
+		<img src="D:\WEBSITE\PHOTOS\SAI.jpeg" alt="D. Sai Kumar" width="300" height="200">
+		    <h3 class="text-xl font-semibold text-blue-900">D. Sai Kumar</h3>
+                    <p class="text-gray-600">President</p>
+                    <p class="text-gray-600">📞 9959515646</p>
+                </div>
+                <!-- General Secretary -->
+                <div class="card bg-white p-6 rounded-lg shadow-lg text-center">
+		<img src="D:\WEBSITE\PHOTOS\VIRUPAKSHA REDDY.jpeg" alt="K. Virupaksha Reddy" width="300" height="200">
+                    <h3 class="text-xl font-semibold text-blue-900">K. Virupaksha Reddy</h3>
+                    <p class="text-gray-600">General Secretary</p>
+                    <p class="text-gray-600">📞 7780539186</p>
+                </div>
+                <!-- Treasurer -->
+                <div class="card bg-white p-6 rounded-lg shadow-lg text-center">
+		<img src="D:\WEBSITE\PHOTOS\RAJU.jpeg" alt="A. Raju" width="300" height="200">
+                    <h3 class="text-xl font-semibold text-blue-900">A. Raju</h3>
+                    <p class="text-gray-600">Treasurer</p>
+                    <p class="text-gray-600">📞 9052259421</p>
+                </div>
+                <!-- Vice President 1 -->
+                <div class="card bg-white p-6 rounded-lg shadow-lg text-center">
+		<img src="D:\WEBSITE\PHOTOS\NARESH.jpeg" alt="K. Naresh Kumar" width="300" height="200">
+                    <h3 class="text-xl font-semibold text-blue-900">K. Naresh Kumar</h3>
+                    <p class="text-gray-600">Vice President-1</p>
+                    <p class="text-gray-600">📞 8500078307</p>
+                </div>
+                <!-- Vice President 2 -->
+                <div class="card bg-white p-6 rounded-lg shadow-lg text-center">
+		<img src="D:\WEBSITE\PHOTOS\KUMARA SWAMY.jpeg" alt="C. Kumaraswamy" width="300" height="200">
+                    <h3 class="text-xl font-semibold text-blue-900">C. Kumaraswamy</h3>
+                    <p class="text-gray-600">Vice President-2</p>
+                    <p class="text-gray-600">📞 8686090964</p>
+                </div>
+                <!-- Vice President 3 -->
+                <div class="card bg-white p-6 rounded-lg shadow-lg text-center">
+                    <h3 class="text-xl font-semibold text-blue-900">D. Raghavendra Raju</h3>
+                    <p class="text-gray-600">Vice President-3</p>
+                    <p class="text-gray-600">📞 9493366844</p>
+                </div>
+                <!-- Joint Secretary 1 -->
+                <div class="card bg-white p-6 rounded-lg shadow-lg text-center">
+		<img src="D:\WEBSITE\PHOTOS\ANIL.jpeg" alt="Peetla Anil" width="300" height="200">
+                    <h3 class="text-xl font-semibold text-blue-900">Peetla Anil</h3>
+                    <p class="text-gray-600">Joint Secretary-1</p>
+                    <p class="text-gray-600">📞 9398203016</p>
+                </div>
+                <!-- Joint Secretary 2 -->
+                <div class="card bg-white p-6 rounded-lg shadow-lg text-center">
+		<img src="D:\WEBSITE\PHOTOS\ASHOK.jpeg" alt="V. Ashok Kumar" width="300" height="200">
+                    <h3 class="text-xl font-semibold text-blue-900">V. Ashok Kumar</h3>
+                    <p class="text-gray-600">Joint Secretary-2</p>
+                    <p class="text-gray-600">📞 8309807389</p>
+                </div>
+                <!-- Joint Secretary 3 -->
+                <div class="card bg-white p-6 rounded-lg shadow-lg text-center">
+		<img src="D:\WEBSITE\PHOTOS\RAGHU.jpeg" alt="G. Raghu Yadav" width="300" height="200">
+                    <h3 class="text-xl font-semibold text-blue-900">G. Raghu Yadav</h3>
+                    <p class="text-gray-600">Joint Secretary-3</p>
+                    <p class="text-gray-600">📞 8985930498</p>
+                </div>
+                <!-- Organizing Secretary 1 -->
+                <div class="card bg-white p-6 rounded-lg shadow-lg text-center">
+		<img src="D:\WEBSITE\PHOTOS\PURUSOTHAM.jpeg" alt="P. R. Purushottam" width="300" height="200">
+                    <h3 class="text-xl font-semibold text-blue-900">P. R. Purushottam</h3>
+                    <p class="text-gray-600">Organizing Secretary-1</p>
+                    <p class="text-gray-600">📞 8247855770</p>
+                </div>
+                <!-- Organizing Secretary 2 -->
+                <div class="card bg-white p-6 rounded-lg shadow-lg text-center">
+		<img src="D:\WEBSITE\PHOTOS\LIKITHA.jpeg" alt="B. Likitha" width="300" height="200">
+                    <h3 class="text-xl font-semibold text-blue-900">B. Likitha</h3>
+                    <p class="text-gray-600">Organizing Secretary-2</p>
+                    <p class="text-gray-600">📞 7330929956</p>
+                </div>
+            </div>
+            <!-- Executive Members -->
+            <h3 class="text-2xl font-bold text-center text-blue-900 mt-12 mb-6">Executive Members</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="card bg-white p-6 rounded-lg shadow-lg text-center">
+		<img src="D:\WEBSITE\PHOTOS\AFRID.jpeg" alt="Syed Afrid" width="300" height="200">
+                    <h3 class="text-xl font-semibold text-blue-900">Syed Afrid</h3>
+                    <p class="text-gray-600">Executive Member</p>
+                    <p class="text-gray-600">📞 9701560014</p>
+                </div>
+                <div class="card bg-white p-6 rounded-lg shadow-lg text-center">
+		<img src="D:\WEBSITE\PHOTOS\M VENKATA RAJESH.jpeg" alt="M. Venkata Rajesh" width="300" height="200">
+                    <h3 class="text-xl font-semibold text-blue-900">M. Venkata Rajesh</h3>
+                    <p class="text-gray-600">Executive Member</p>
+                    <p class="text-gray-600">📞 917729141</p>
+                </div>
+                <div class="card bg-white p-6 rounded-lg shadow-lg text-center">
+                    <h3 class="text-xl font-semibold text-blue-900">D. Dilshad</h3>
+                    <p class="text-gray-600">Executive Member</p>
+                    <p class="text-gray-600">📞 9052683704</p>
+                </div>
+                <div class="card bg-white p-6 rounded-lg shadow-lg text-center">
+		<img src="D:\WEBSITE\PHOTOS\VEERESH.jpeg" alt="G. Veeresh" width="300" height="200">
+                    <h3 class="text-xl font-semibold text-blue-900">G. Veeresh</h3>
+                    <p class="text-gray-600">Executive Member</p>
+                    <p class="text-gray-600">📞 8985086033</p>
+                </div>
+                <div class="card bg-white p-6 rounded-lg shadow-lg text-center">
+		<img src="D:\WEBSITE\PHOTOS\ADI.jpeg" alt="S. Adinarayana" width="300" height="200">
+                    <h3 class="text-xl font-semibold text-blue-900">S. Adinarayana</h3>
+                    <p class="text-gray-600">Executive Member</p>
+                    <p class="text-gray-600">📞 9494598565</p>
+                </div>
+                <div class="card bg-white p-6 rounded-lg shadow-lg text-center">
+		<img src="D:\WEBSITE\PHOTOS\NEELAKANTA REDDY.jpeg" alt="M. Neelakanta Reddy" width="300" height="200">
+                    <h3 class="text-xl font-semibold text-blue-900">M. Neelakanta Reddy</h3>
+                    <p class="text-gray-600">Executive Member</p>
+                    <p class="text-gray-600">📞 9441008958</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-blue-900 text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-8">Contact Us</h2>
+            <p class="text-lg max-w-2xl mx-auto mb-6">
+                Reach out to us for any inquiries or to join our association. We're here to support our members and address your concerns.
+            </p>
+            <p class="text-lg">📧 Email: apvroassociation@gmail.com</p>
+            <p class="text-lg">📍 Address: Ananthapuramu District, Andhra Pradesh, India</p>
+            <p class="text-lg mt-4">Connect with our leadership team directly via the contact numbers provided above.</p>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="bg-gray-800 text-white py-6">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; 2025 AP Direct Recruitment Grade-II VRO's Association. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
